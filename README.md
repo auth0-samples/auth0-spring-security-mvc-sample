@@ -146,7 +146,7 @@ Then, go to [http://localhost:3099/login](http://localhost:3099/login).
 
 ![](img/2.home.jpg)
 
-#### 2. Home -  logged in user has ROLE_ADMIN level authority
+#### 3. Home -  logged in user has ROLE_ADMIN level authority
 
 ![](img/3.home.jpg)
 
