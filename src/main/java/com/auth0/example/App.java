@@ -11,7 +11,6 @@ import org.springframework.context.annotation.PropertySources;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.auth0.example", "com.auth0.web", "com.auth0.spring.security.mvc"})
 @EnableAutoConfiguration
-
 @PropertySources({
         @PropertySource("classpath:application.properties"),
         @PropertySource("classpath:auth0.properties")

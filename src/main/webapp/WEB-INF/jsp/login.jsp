@@ -25,7 +25,10 @@
             var lock = new Auth0Lock('${clientId}', '${domain}');
             lock.showSignin({
                 authParams: {
-                    state: '${state}'
+                    state: '${state}',
+                    // change scopes to whatever you like
+                    // claims are added to JWT id_token - openid profile gives everything
+                    scope: 'openid roles user_id name nickname email picture'
                 },
                 responseType: 'code',
                 popup: false,
