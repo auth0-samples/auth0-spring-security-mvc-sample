@@ -1,4 +1,14 @@
-## Simple Application demonstrating Auth0 Lock login and home page using Spring Security
+## Sample application demonstrating Auth0 and spring security integration for a Java Spring MVC application
+
+This sample application shows you how to:
+
+ 1. Configure and run Java based Spring application with Auth0 (Lock or Auth0.js) and Spring Security
+ 2. 100% Java Configuration (Annotations)
+ 3. Secure one or more URL endpoints with Role / Authority based permissions (ROLE_USER, ROLE_ADMIN etc)
+ 4. Secure Java Services using method level security annotations for role based access control
+ 5. Use Spring Security JSTL tag library to add role level security to your JSP pages.
+
+Let's get started - it only takes a few minutes to have a working application with all the above.
 
 ### Prerequisites
 
@@ -89,12 +99,12 @@ Here is our sample `AppConfig` entry where we specify the endpoints security set
         http
                 .authorizeRequests()
                 .antMatchers("/css/**", "/fonts/**", "/js/**", "/login").permitAll()
-//                .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+//                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers(getSecuredRoute()).authenticated();
 ```
 
-Here, we only allow users with `ROLE_ADMIN` to access the home page.
+Here, we only allow users with `ROLE_USER` or `ROLE_ADMIN` to access the home page.
 
 
 ### Inside the Application - update configuration information
@@ -102,6 +112,15 @@ Here, we only allow users with `ROLE_ADMIN` to access the home page.
 Enter your:
 
 `client_id`, `client_secret`, and `domain` information into `src/main/resources/auth0.properties`
+
+Note: There are two properties in `auth0.properties` that you do not need to touch. Leave values as `false`
+
+`auth0.servletFilterEnabled: false` - this ensures we don't autowire the ServletFilter defined in an Auth0 dependency
+library.
+
+`auth0.defaultAuth0WebSecurityEnabled: false` - this ensures we do not autowire the default configuration file
+provided with the `auth0-spring-security-mvc` library itself. That is a default configuration suitable only for
+simpler applications seeking to have an out of the box secured endpoint URL - similar to `auth-servlet` library.
 
 
 ### Build and Run
@@ -123,10 +142,13 @@ Then, go to [http://localhost:3099/login](http://localhost:3099/login).
 
 ![](img/1.login.jpg)
 
-#### 2. Home
+#### 2. Home - logged in user has ROLE_USER level authority
 
 ![](img/2.home.jpg)
 
+#### 2. Home -  logged in user has ROLE_ADMIN level authority
+
+![](img/3.home.jpg)
 
 ---
 

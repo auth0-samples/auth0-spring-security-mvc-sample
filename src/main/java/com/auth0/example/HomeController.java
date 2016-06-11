@@ -33,27 +33,28 @@ public class HomeController {
 
     @RequestMapping(value="/portal/home", method = RequestMethod.GET)
     protected String home(final Map<String, Object> model, final HttpServletRequest req, final Principal principal) {
-
         logger.info("Home page");
-
         final String name = principal.getName();
         logger.info("Principal name: " + name);
-
-        final Auth0JWTToken token = (Auth0JWTToken) principal;
-        for(final GrantedAuthority authority: token.getAuthorities()) {
-            logger.info(authority.getAuthority());
-        }
-
-        // if NOT admin - redirected back to login page
-        adminService.ensureAdmin();
-
+        adminChecks((Auth0JWTToken) principal);
         final Auth0User user = SessionUtils.getAuth0User(req);
-        if (user == null) {
-            final String logoutPath = auth0Config.getOnLogoutRedirectTo();
-            return "redirect:" + logoutPath;
-        }
         model.put("user", user);
         return "home";
+    }
+
+    /**
+     *  Simple illustration only
+     */
+    private void adminChecks(final Auth0JWTToken principal) {
+        for(final GrantedAuthority grantedAuthority: principal.getAuthorities()) {
+            final String authority = grantedAuthority.getAuthority();
+            logger.info(authority);
+            if (("ROLE_ADMIN".equals(authority))) {
+                // just a simple callout to demonstrate role based authorization at service level
+                // non-Admin user would be rejected trying to call this service
+                adminService.ensureAdmin();
+            }
+        }
     }
 
 }
