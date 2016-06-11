@@ -39,6 +39,64 @@ Add one or more `connections` to your application - for instance Google Social C
 or username-password DB connection.
 
 
+###### Add Role Based Authorization By Creating an Auth0 Rule
+
+
+Since this sample applies Role based authorization on the Home Page (defaults to requiring `ROLE_ADMIN`), go to `Rules`
+and create the following new Rule:
+
+```
+function (user, context, callback) {
+  user.app_metadata = user.app_metadata || {};
+  // You can add a Role based on what you want
+  // Here, we simply check domain
+  var addRolesToUser = function(user, cb) {
+    if (user.email.indexOf('@gmail.com') > -1) {
+      cb(null, ['ROLE_ADMIN']);
+   } else if (user.email.indexOf('@auth0.com') > -1) {
+      cb(null, ['ROLE_ADMIN']);
+    } else {
+      cb(null, ['ROLE_USER']);
+    }
+  };
+
+  addRolesToUser(user, function(err, roles) {
+    if (err) {
+      callback(err);
+    } else {
+      user.app_metadata.roles = roles;
+      auth0.users.updateAppMetadata(user.user_id, user.app_metadata)
+        .then(function(){
+          callback(null, user, context);
+        })
+        .catch(function(err){
+          callback(err);
+        });
+    }
+  });
+}
+```
+
+In our simple Rule above, we add `ROLE_ADMIN` to any user profiles whose email addresses are `gomain.com` and `auth0.com` domains.
+Otherwise, we only provide `ROLE_USER` role. Our Spring Security Sample app will read this information from the UserProfile and apply
+the granted authorities when checking authorization access to secured endpoints configured with Role based permissions
+
+Here is our sample `AppConfig` entry where we specify the endpoints security settings - defined in AppConfig.java
+
+
+```
+  // Apply the Authentication and Authorization Strategies your application endpoints require
+        http
+                .authorizeRequests()
+                .antMatchers("/css/**", "/fonts/**", "/js/**", "/login").permitAll()
+//                .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers(getSecuredRoute()).authenticated();
+```
+
+Here, we only allow users with `ROLE_ADMIN` to access the home page.
+
+
 ### Inside the Application - update configuration information
 
 Enter your:

@@ -1,5 +1,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -28,8 +29,19 @@
     </div>
     <div class="jumbotron">
         <h3>Hello ${user.name}!</h3>
+        <p class="lead">Your username is: ${user.nickname} <sec:authentication property="principal.username"/></p>
         <p class="lead">Your nickname is: ${user.nickname}</p>
         <p class="lead">Your user id is: ${user.userId}</p>
+        <p class="lead">
+            <sec:authorize access="hasRole('ADMIN')">
+                <label>This line is only visible if you have ROLE_ADMIN</label>
+            </sec:authorize>
+        </p>
+        <p class="lead">
+            <sec:authorize access="hasRole('USER')">
+                <label>This line is only visible if you have ROLE_USER</label>
+            </sec:authorize>
+        </p>
         <p><img class="avatar" src="${user.picture}"/></p>
     </div>
     <div class="row marketing">
