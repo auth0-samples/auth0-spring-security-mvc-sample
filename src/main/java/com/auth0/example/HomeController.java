@@ -21,6 +21,9 @@ public class HomeController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    AdminService adminService;
+
     private Auth0Config auth0Config;
 
     @Autowired
@@ -40,6 +43,9 @@ public class HomeController {
         for(final GrantedAuthority authority: token.getAuthorities()) {
             logger.info(authority.getAuthority());
         }
+
+        // if NOT admin - redirected back to login page
+        adminService.ensureAdmin();
 
         final Auth0User user = SessionUtils.getAuth0User(req);
         if (user == null) {

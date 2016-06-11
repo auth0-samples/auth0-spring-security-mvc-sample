@@ -6,10 +6,13 @@ import com.auth0.spring.security.mvc.Auth0AuthenticationProvider;
 import com.auth0.spring.security.mvc.Auth0CORSFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,6 +22,8 @@ import org.springframework.security.web.context.SecurityContextPersistenceFilter
 
 @Configuration
 @EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Value(value = "${auth0.clientId}")
@@ -71,26 +76,21 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Disable CSRF for JWT usage
-        http
-                .csrf()
-                .disable();
+        http.csrf().disable();
+
         // Add Auth0 Authentication Filter
-        http
-                .addFilterAfter(auth0AuthenticationFilter(auth0AuthenticationEntryPoint()), SecurityContextPersistenceFilter.class)
+        http.addFilterAfter(auth0AuthenticationFilter(auth0AuthenticationEntryPoint()), SecurityContextPersistenceFilter.class)
                 .addFilterBefore(simpleCORSFilter(), Auth0AuthenticationFilter.class);
 
         // Apply the Authentication and Authorization Strategies your application endpoints require
-        http
-                .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/css/**", "/fonts/**", "/js/**", "/login").permitAll()
-//                .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+//                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers(getSecuredRoute()).authenticated();
 
         // ensure session management is enabled - we must retain session state
-        http
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
     }
 
     protected String getClientId() {
