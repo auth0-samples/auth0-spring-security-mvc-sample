@@ -8,10 +8,10 @@ This sample application shows you how to:
  4. Secure Java Services using method level security annotations for role based access control
  5. Use Spring Security JSTL tag library to add role level security to your JSP pages.
 
- In addition to this sample for Auth0 and Spring Security integration, if you are additionally interested in
- having Single Sign-On (SSO) between Java Spring Security configured applications, then please take a look
- at our [auth0-spring-security-mvc-sso-sample](https://github.com/auth0-samples/auth0-spring-security-mvc-sso-sample)
 
+In addition to this sample for Auth0 and Spring Security integration, if you are additionally interested in
+having Single Sign-On (SSO) between Java Spring Security configured applications, then please take a look
+at our [auth0-spring-security-mvc-sso-sample](https://github.com/auth0-samples/auth0-spring-security-mvc-sso-sample)
 
 Let's get started - it only takes a few minutes to have a working application with all the above.
 
