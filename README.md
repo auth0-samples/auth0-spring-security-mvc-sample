@@ -87,7 +87,7 @@ function (user, context, callback) {
 }
 ```
 
-In our simple Rule above, we add `ROLE_ADMIN` to any user profiles whose email addresses are `gomain.com` and `auth0.com` domains.
+In our simple Rule above, we add `ROLE_ADMIN` to any user profiles whose email addresses are `gmail.com` and `auth0.com` domains.
 Otherwise, we only provide `ROLE_USER` role. Our Spring Security Sample app will read this information from the UserProfile and apply
 the granted authorities when checking authorization access to secured endpoints configured with Role based permissions
 
@@ -120,7 +120,7 @@ library.
 
 `auth0.defaultAuth0WebSecurityEnabled: false` - this ensures we do not autowire the default configuration file
 provided with the `auth0-spring-security-mvc` library itself. That is a default configuration suitable only for
-simpler applications seeking to have an out of the box secured endpoint URL - similar to `auth-servlet` library.
+simpler applications seeking to have an out of the box secured endpoint URL - similar to `auth0-servlet` library.
 
 
 ### Build and Run

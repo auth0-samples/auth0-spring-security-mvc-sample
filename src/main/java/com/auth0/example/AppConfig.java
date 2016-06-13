@@ -86,11 +86,10 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/fonts/**", "/js/**", "/login").permitAll()
                 .antMatchers("/portal/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-//                .antMatchers("/portal/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers(getSecuredRoute()).authenticated();
 
-        // ensure session management is enabled - we must retain session state
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+        // Auth0 will handle session management explicitly - not spring security
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
 
     protected String getClientId() {

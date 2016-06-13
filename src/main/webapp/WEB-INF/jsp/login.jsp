@@ -16,7 +16,7 @@
         $(function () {
             var error = ${error};
             if (error) {
-                $.growl.error({message: "An error was detected. Please log in"});
+                $.growl.error({message: "Please log in"});
             } else {
                 $.growl({title: "Welcome!", message: "Please log in"});
             }
