@@ -20,9 +20,12 @@ public class LoginController {
 
     private Auth0Config auth0Config;
 
+    private AppConfig appConfig;
+
     @Autowired
-    public LoginController(Auth0Config auth0Config) {
+    public LoginController(final Auth0Config auth0Config, final AppConfig appConfig) {
         this.auth0Config = auth0Config;
+        this.appConfig = appConfig;
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
@@ -35,7 +38,11 @@ public class LoginController {
         model.put("domain", auth0Config.getDomain());
         model.put("loginCallback", auth0Config.getLoginCallback());
         model.put("state", SessionUtils.getState(req));
-        return "login";
+        model.put("connection", appConfig.getConnection());
+        // for this sample only, this just allows configuration to
+        // use Lock Widget or Auth0.js for login presentation
+        // should only enable loginCustom for DB connection
+        return appConfig.isCustomLogin() ? "loginCustom" : "login";
     }
 
     private void detectError(final Map<String, Object> model) {
