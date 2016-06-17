@@ -1,5 +1,8 @@
 ## Sample application demonstrating Auth0 and spring security integration for a Java Spring MVC application
 
+This is a companion sample for the [Auth0 Spring Security MVC](https://github.com/auth0/auth0-spring-security-mvc) library.
+Please refer to that library and documentation for further information specific to the library itself.
+
 This sample application shows you how to:
 
  1. Configure and run Java based Spring application with Auth0 (Lock or Auth0.js) and Spring Security
