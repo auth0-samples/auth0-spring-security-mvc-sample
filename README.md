@@ -119,9 +119,14 @@ Here, we only allow users with `ROLE_USER` or `ROLE_ADMIN` to access the home pa
 
 Enter your:
 
-`client_id`, `client_secret`, and `domain` information into `src/main/resources/auth0.properties`
+`auth0.domain`, `auth0.issuer`, `auth0.clientId`, and `auth0.clientSecret` information into `src/main/resources/auth0.properties`.
 
-Note: There are two properties in `auth0.properties` that you do not need to touch. Leave values as `false`
+Note:
+
+`auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/`. That is, if `auth0.domain` is `example.auth0.com`, `auth0.issuer`
+should be `https://example.auth0.com/` (the trailing slash is important).
+ 
+There are two properties in `auth0.properties` that you do not need to touch. Leave values as `false`
 
 `auth0.servletFilterEnabled: false` - this ensures we don't autowire the ServletFilter defined in an Auth0 dependency
 library.
