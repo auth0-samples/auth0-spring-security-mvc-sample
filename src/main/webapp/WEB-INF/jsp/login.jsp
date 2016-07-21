@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/css/jquery.growl.css"/>
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="http://cdn.auth0.com/js/lock-9.min.js"></script>
+    <script src="https://cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
     <script src="/js/jquery.growl.js" type="text/javascript"></script>
 </head>
 <body>
@@ -22,18 +22,19 @@
             }
         });
         $(function () {
-            var lock = new Auth0Lock('${clientId}', '${domain}');
-            lock.showSignin({
-                authParams: {
-                    state: '${state}',
-                    // change scopes to whatever you like
-                    // claims are added to JWT id_token - openid profile gives everything
-                    scope: 'openid roles user_id name nickname email picture'
-                },
-                responseType: 'code',
-                popup: false,
-                callbackURL: '${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, '')}${loginCallback}'
+            var lock = new Auth0Lock('${clientId}', '${domain}', {
+                auth: {
+                    params: {
+                        state: '${state}',
+                        // change scopes to whatever you like
+                        // claims are added to JWT id_token - openid profile gives everything
+                        scope: 'openid roles user_id name nickname email picture'
+                    },
+                    responseType: 'code',
+                    redirectUrl: '${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, '')}${loginCallback}'
+                }
             });
+            lock.show();
         });
     </script>
 </div>
