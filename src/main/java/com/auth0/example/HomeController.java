@@ -1,7 +1,6 @@
 package com.auth0.example;
 
 import com.auth0.spring.security.mvc.Auth0JWTToken;
-import com.auth0.web.Auth0Config;
 import com.auth0.web.Auth0User;
 import com.auth0.web.SessionUtils;
 import org.slf4j.Logger;
@@ -22,14 +21,7 @@ public class HomeController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    AdminService adminService;
-
-    private Auth0Config auth0Config;
-
-    @Autowired
-    public HomeController(Auth0Config auth0Config) {
-        this.auth0Config = auth0Config;
-    }
+    private AdminService adminService;
 
     @RequestMapping(value="/portal/home", method = RequestMethod.GET)
     protected String home(final Map<String, Object> model, final HttpServletRequest req, final Principal principal) {
