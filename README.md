@@ -123,8 +123,9 @@ Enter your:
 
 Note:
 
-`auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/`. That is, if `auth0.domain` is `example.auth0.com`, `auth0.issuer`
-should be `https://example.auth0.com/` (the trailing slash is important).
+`auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/` (the trailing slash is important).
+For example, if your `auth0.domain` is `example.auth0.com` then `auth0.issuer` should have value `https://example.auth0.com/`.
+
  
 There are two properties in `auth0.properties` that you do not need to touch. Leave values as `false`
 
