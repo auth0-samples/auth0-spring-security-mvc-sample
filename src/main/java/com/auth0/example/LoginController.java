@@ -1,8 +1,7 @@
 package com.auth0.example;
 
-import com.auth0.web.Auth0Config;
-import com.auth0.web.NonceUtils;
-import com.auth0.web.SessionUtils;
+import com.auth0.NonceUtils;
+import com.auth0.SessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,10 @@ public class LoginController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Auth0Config auth0Config;
-
     private AppConfig appConfig;
 
     @Autowired
-    public LoginController(final Auth0Config auth0Config, final AppConfig appConfig) {
-        this.auth0Config = auth0Config;
+    public LoginController(final AppConfig appConfig) {
         this.appConfig = appConfig;
     }
 
@@ -34,9 +30,9 @@ public class LoginController {
         detectError(model);
         // add Nonce to storage
         NonceUtils.addNonceToStorage(req);
-        model.put("clientId", auth0Config.getClientId());
-        model.put("domain", auth0Config.getDomain());
-        model.put("loginCallback", auth0Config.getLoginCallback());
+        model.put("clientId", appConfig.getClientId());
+        model.put("domain", appConfig.getDomain());
+        model.put("loginCallback", appConfig.getLoginCallback());
         model.put("state", SessionUtils.getState(req));
         model.put("connection", appConfig.getConnection());
         // for this sample only, this just allows configuration to

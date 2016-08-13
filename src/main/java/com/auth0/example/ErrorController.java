@@ -1,6 +1,5 @@
 package com.auth0.example;
 
-import com.auth0.web.Auth0Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +16,18 @@ public class ErrorController implements org.springframework.boot.autoconfigure.w
 
     private static final String PATH = "/error";
 
-    private Auth0Config auth0Config;
+    private AppConfig appConfig;
 
     @Autowired
-    public ErrorController(Auth0Config auth0Config) {
+    public ErrorController(final AppConfig appConfig) {
         super();
-        this.auth0Config = auth0Config;
+        this.appConfig = appConfig;
     }
 
     @RequestMapping("/error")
     protected String error(final RedirectAttributes redirectAttributes) throws IOException {
         logger.error("Handling error");
-        final String logoutPath = auth0Config.getOnLogoutRedirectTo();
+        final String logoutPath = appConfig.getOnLogoutRedirectTo();
         redirectAttributes.addFlashAttribute("error", true);
         return "redirect:" + logoutPath;
     }

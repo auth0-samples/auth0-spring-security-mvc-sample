@@ -1,6 +1,5 @@
 package com.auth0.example;
 
-import com.auth0.web.Auth0Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +14,18 @@ public class LogoutController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Auth0Config auth0Config;
+    private AppConfig appConfig;
 
     @Autowired
-    public LogoutController(Auth0Config auth0Config) {
-        this.auth0Config = auth0Config;
+    public LogoutController(final AppConfig appConfig) {
+        this.appConfig = appConfig;
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     protected String logout(final HttpServletRequest request) {
         logger.debug("Performing logout");
         invalidateSession(request);
-        final String logoutPath = auth0Config.getOnLogoutRedirectTo();
+        final String logoutPath = appConfig.getOnLogoutRedirectTo();
         return "redirect:" + logoutPath;
     }
 
