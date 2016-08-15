@@ -1,0 +1,19 @@
+{
+  "title": "Auth0 Spring Security MVC Sample",
+  "description": "Demonstrates using Auth0 with Spring Boot and Spring Security to create a traditional server-side MVC web app.",
+  "seed": "true",
+  "languages":[
+    "java"
+  ],
+  "frameworks":[
+    "spring",
+    "spring boot",
+    "spring security"
+  ],
+  "tags": [
+    "java",
+    "spring",
+    "spring-boot",
+    "auth0"
+  ]
+}
