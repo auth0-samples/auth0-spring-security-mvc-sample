@@ -20,14 +20,4 @@ public class HomeController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value="/portal/home", method = RequestMethod.GET)
-    protected String home(final Map<String, Object> model, final HttpServletRequest req, final Principal principal) {
-        logger.info("Home page");
-        final String name = principal.getName();
-        logger.info("Principal name: " + name);
-        final Auth0User user = SessionUtils.getAuth0User(req);
-        model.put("user", user);
-        return "home";
-    }
-
 }
