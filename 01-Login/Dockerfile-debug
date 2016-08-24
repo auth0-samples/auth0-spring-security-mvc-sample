@@ -1,0 +1,2 @@
+FROM auth0/auth0-spring-security-mvc-sample
+ENTRYPOINT ["/usr/share/maven/bin/mvnDebug", "clean", "compile", "exec:java"]

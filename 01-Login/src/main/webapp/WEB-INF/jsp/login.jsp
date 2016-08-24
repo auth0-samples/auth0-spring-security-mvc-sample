@@ -29,7 +29,7 @@
                     params: {
                         state: '${state}',
                         // Learn about scopes: https://auth0.com/docs/scopes
-                        scope: 'openid user_id name nickname email picture'
+                        scope: 'openid roles user_id name nickname email picture'
                     }
                 }
             });
