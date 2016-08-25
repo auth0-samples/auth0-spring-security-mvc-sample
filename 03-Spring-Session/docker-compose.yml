@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+ redis:
+   image: redis
+   ports:
+     - "6379:6379"
+   networks:
+     - my-network
+   container_name:
+     redis-server
+
+ auth0-sample:
+   build:
+     context: .
+     dockerfile: Dockerfile
+   volumes:
+     - .:/usr/src/app
+   ports:
+     - "3099:3099"
+   networks:
+     - my-network
+   links:
+    - redis:redis-server
+   container_name:
+     auth0-spring-security-mvc-sample-using-spring-session
+
+
+networks:
+  my-network:
+    driver: bridge
