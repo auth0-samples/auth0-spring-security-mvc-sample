@@ -97,12 +97,6 @@ simpler applications seeking to have an out of the box secured endpoint URL - si
 For details on the other settings, please check the README for the library this sample depends on  [Auth0 Spring Security MVC](https://github.com/auth0/auth0-spring-security-mvc).
 In particular, [this section on defalut configuration](https://github.com/auth0/auth0-spring-security-mvc#default-configuration) which lists each property together with a description on its purpose.
 
-### 2. Login and fetch profile
-TO-BE-UPDATED
-
-### Show country attribute in profile
-TO-BE-UPDATED
-
 ## Build and Run
 
 In order to build and run the project execute:
