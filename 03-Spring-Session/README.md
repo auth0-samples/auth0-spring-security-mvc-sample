@@ -66,16 +66,6 @@ public class HttpSessionConfig {
 }
 ```
 
-We add the following to the Overridden AppConfig (This is *IMPORTANT* to get Spring Session to work correctly with Spring Security and Spring Boot)
-
-```
-@Bean
-public OrderedRequestContextFilter requestContextFilter() {
-    return new OrderedRequestContextFilter();
-}
-```
-
-
 Finally, we need to update our `src/main/resources/application.properties` with the redis specific properties to connect:
 
 ```

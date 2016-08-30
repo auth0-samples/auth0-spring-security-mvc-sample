@@ -2,8 +2,6 @@ package com.auth0.example;
 
 import com.auth0.spring.security.mvc.Auth0Config;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.boot.context.web.OrderedRequestContextFilter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,10 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class AppConfig extends Auth0Config {
 
-    @Bean
-    public OrderedRequestContextFilter requestContextFilter() {
-        return new OrderedRequestContextFilter();
-    }
 
     @Override
     protected void authorizeRequests(final HttpSecurity http) throws Exception {
