@@ -14,9 +14,7 @@ Check that your maven version is 3.0.x or above:
 mvn -v
 ```
 
-## Important Snippets
-
-### Create an Auth0 Rule
+## Create an Auth0 Rule
 
 Since this sample applies Role based authorization on the Home Page (defaults to requiring `ROLE_ADMIN`), go to `Rules`
 and create the following new Rule:
@@ -73,7 +71,7 @@ Here is our sample `AppConfig` entry where we specify the endpoints security set
 Here, we only allow users with `ROLE_USER` or `ROLE_ADMIN` to access the home page.
 
 
-### Update configuration information
+## Update configuration information
 
 Enter your:
 
