@@ -4,7 +4,7 @@ The `01-Login` sample explains how to login but with the [Lock widget](https://a
 
 In our example we will configure a custom database connection to use with our custom login. We will also keep on building on our previous example, the one using Lock. We will add a flag that when set the custom login will be used, while when unset Lock will be used. This is completely optional of course, you can configure your own web app to use only custom login if this is what you want.
 
-You can read a quickstart for this sample [here](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/01-login). 
+You can read a quickstart for this sample [here](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/02-custom-login). 
 
 ## Prerequisites
 
