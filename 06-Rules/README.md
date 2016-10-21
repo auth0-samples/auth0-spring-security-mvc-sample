@@ -82,12 +82,6 @@ Note:
 `auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/` (the trailing slash is important).
 For example, if your `auth0.domain` is `example.auth0.com` then `auth0.issuer` should have value `https://example.auth0.com/`.
 
- 
-There are two properties in `auth0.properties` that you do not need to touch. Leave values as `false`
-
-`auth0.servletFilterEnabled: false` - this ensures we don't autowire the ServletFilter defined in an Auth0 dependency
-library.
-
 `auth0.defaultAuth0WebSecurityEnabled: false` - this ensures we do not autowire the default configuration file
 provided with the `auth0-spring-security-mvc` library itself. That is a default configuration suitable only for
 simpler applications seeking to have an out of the box secured endpoint URL - similar to `auth0-servlet` library.
