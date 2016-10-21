@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/signin.css">
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="/js/jquery.growl.js" type="text/javascript"></script>
-    <script src="http://cdn.auth0.com/w2/auth0-6.8.js"></script>
+    <script src="//cdn.auth0.com/w2/auth0-7.2.1.js"></script>
 </head>
 <body>
 <div class="container">
