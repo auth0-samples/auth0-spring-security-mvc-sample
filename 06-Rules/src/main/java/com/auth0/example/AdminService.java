@@ -30,8 +30,9 @@ public class AdminService {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         final Auth0UserDetails currentUser = (Auth0UserDetails) authentication.getPrincipal();
         logger.info("Current user accessed Admin secured resource: " + currentUser.getUsername());
-        // add extra info here for retrieval of userMetadata and appMetadata
+        // add extra info here for retrieval of userMetadata, appMetadata and extraInfo
         final Map<String, Object> userMetadata = currentUser.getUserMetadata();
+        final Map<String, Object> appMetadata = currentUser.getAppMetadata();
         final Map<String, Object> extraInfo = currentUser.getExtraInfo();
         return true;
     }
