@@ -71,23 +71,39 @@ Here is our sample `AppConfig` entry where we specify the endpoints security set
 Here, we only allow users with `ROLE_USER` or `ROLE_ADMIN` to access the home page.
 
 
-## Update configuration information
+## Configure your Spring Security app
 
-Enter your:
+Your Spring Security app needs some information in order to authenticate against your Auth0 account. We have created a file for you but you need to update some of the entries with the valid values for your Client. The file is `/src/main/resources/auth0.properties.example` and it contains the following:
 
-`auth0.domain`, `auth0.issuer`, `auth0.clientId`, and `auth0.clientSecret` information into `src/main/resources/auth0.properties`.
+```
+auth0.domain: {DOMAIN}
+auth0.issuer: {ISSUER}
+auth0.clientId: {CLIENT_ID}
+auth0.clientSecret: {CLIENT_SECRET}
+auth0.onLogoutRedirectTo: /login
+auth0.securedRoute: /portal/*
+auth0.loginCallback: /callback
+auth0.loginRedirectOnSuccess: /portal/home
+auth0.loginRedirectOnFail: /login
+auth0.base64EncodedSecret: true
+auth0.authorityStrategy: ROLES
+auth0.defaultAuth0WebSecurityEnabled: false
+auth0.connection: {CONNECTION}
+auth0.customLogin: true
+auth0.signingAlgorithm: HS256
+#auth0.signingAlgorithm: RS256
+#auth0.publicKeyPath: /WEB-INF/certificate/cert.pem
+```
 
-Note:
+Rename the file to `auth0.properties` and change the following values:
+- `auth0.domain`:	Your auth0 domain. You can find the correct value on the Settings tab of your client on the dashboard.
+- `auth0.issuer`:	The issuer of the JWT Token. This is typically your auth0 domain with a `https://` prefix and a `/` suffix. For example, if your `auth0.domain` is `example.auth0.com` then the `auth0.issuer` should be set to `https://example.auth0.com/` (the trailing slash is important!).
+- `auth0.clientId`:	The unique identifier for your client. You can find the correct value on the Settings tab of your client on the dashboard. 
+- `auth0.clientSecret`:	The secret used to sign and validate the tokens that will be used in the different authentication flows. You can find the correct value on the Settings tab of your client on the dashboard.
+- `auth0.connection`: The name of the database connection you created, for example `custom-login-DB`.
+- `auth0.customLogin`: Set to `true` to enable custom login instead of Lock.
 
-`auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/` (the trailing slash is important).
-For example, if your `auth0.domain` is `example.auth0.com` then `auth0.issuer` should have value `https://example.auth0.com/`.
-
-`auth0.defaultAuth0WebSecurityEnabled: false` - this ensures we do not autowire the default configuration file
-provided with the `auth0-spring-security-mvc` library itself. That is a default configuration suitable only for
-simpler applications seeking to have an out of the box secured endpoint URL - similar to `auth0-servlet` library.
-
-For details on the other settings, please check the README for the library this sample depends on  [Auth0 Spring Security MVC](https://github.com/auth0/auth0-spring-security-mvc).
-In particular, [this section on defalut configuration](https://github.com/auth0/auth0-spring-security-mvc#default-configuration) which lists each property together with a description on its purpose.
+If you download the seed from our [Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/06-rules) then the `domain`, `clientId` and `clientSecret` attributes will be populated for you, unless you are not logged in or you do not have at least one registered client. In any case you should verify that the values are correct if you have multiple clients in your account and you might want to use another than the one we set the information for.
 
 ## Build and Run
 

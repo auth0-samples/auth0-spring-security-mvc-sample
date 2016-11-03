@@ -35,6 +35,38 @@ Shut it down manually with Ctrl-C.
 
 Documentation: [Login](https://auth0.com/docs/quickstart/webapp/java-spring-mvc/01-login)
 
+## Configure your Spring Security app
+
+Your Spring Security app needs some information in order to authenticate against your Auth0 account. We have created a file for you but you need to update some of the entries with the valid values for your Client. The file is `/src/main/resources/auth0.properties.example` and it contains the following:
+
+```
+auth0.domain: {DOMAIN}
+auth0.issuer: {ISSUER}
+auth0.clientId: {CLIENT_ID}
+auth0.clientSecret: {CLIENT_SECRET}
+auth0.onLogoutRedirectTo: /login
+auth0.securedRoute: /portal/*
+auth0.loginCallback: /callback
+auth0.loginRedirectOnSuccess: /portal/home
+auth0.loginRedirectOnFail: /login
+auth0.base64EncodedSecret: true
+auth0.authorityStrategy: ROLES
+auth0.defaultAuth0WebSecurityEnabled: false
+auth0.connection: {CONNECTION}
+auth0.customLogin: true
+auth0.signingAlgorithm: HS256
+#auth0.signingAlgorithm: RS256
+#auth0.publicKeyPath: /WEB-INF/certificate/cert.pem
+```
+
+Rename the file to `auth0.properties` and change the following values:
+- `auth0.domain`:	Your auth0 domain. You can find the correct value on the Settings tab of your client on the dashboard.
+- `auth0.issuer`:	The issuer of the JWT Token. This is typically your auth0 domain with a `https://` prefix and a `/` suffix. For example, if your `auth0.domain` is `example.auth0.com` then the `auth0.issuer` should be set to `https://example.auth0.com/` (the trailing slash is important!).
+- `auth0.clientId`:	The unique identifier for your client. You can find the correct value on the Settings tab of your client on the dashboard. 
+- `auth0.clientSecret`:	The secret used to sign and validate the tokens that will be used in the different authentication flows. You can find the correct value on the Settings tab of your client on the dashboard.
+- `auth0.connection`: The name of the database connection you created, for example `custom-login-DB`.
+- `auth0.customLogin`: Set to `true` to enable custom login instead of Lock.
+
 
 ### How does Spring-Session work:
 
