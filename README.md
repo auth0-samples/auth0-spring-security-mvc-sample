@@ -123,7 +123,7 @@ Enter your:
 
 Note:
 
-`auth0.issuer` should have the value `https://YOUR_DOMAIN.auth0.com/` (the trailing slash is important).
+`auth0.issuer` should have the value `https://YOUR_DOMAIN/` (the trailing slash is important).
 For example, if your `auth0.domain` is `example.auth0.com` then `auth0.issuer` should have value `https://example.auth0.com/`.
 
 `auth0.defaultAuth0WebSecurityEnabled: false` - this ensures we do not autowire the default configuration file
