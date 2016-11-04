@@ -22,7 +22,7 @@
             }
         });
         $(function () {
-            var lock = new Auth0Lock('${clientId}', '${domain}', {
+            var lock = new Auth0Lock('${clientId}', '${clientDomain}', {
                 auth: {
                     redirectUrl: '${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, '')}${loginCallback}',
                     responseType: 'code',

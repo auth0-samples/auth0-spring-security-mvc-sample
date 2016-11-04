@@ -29,7 +29,7 @@
     <script type="text/javascript">
         $(function () {
             var auth0 = new Auth0({
-                domain: '${domain}',
+                domain: '${clientDomain}',
                 clientID: '${clientId}',
                 callbackURL: '${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, '')}${loginCallback}'
             });

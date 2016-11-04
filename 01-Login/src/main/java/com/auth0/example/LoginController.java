@@ -31,7 +31,7 @@ public class LoginController {
         // add Nonce to storage
         NonceUtils.addNonceToStorage(req);
         model.put("clientId", appConfig.getClientId());
-        model.put("domain", appConfig.getDomain());
+        model.put("clientDomain", appConfig.getDomain());
         model.put("loginCallback", appConfig.getLoginCallback());
         model.put("state", SessionUtils.getState(req));
         // for this sample only, this just allows configuration to
