@@ -76,7 +76,7 @@ Rename the file to `auth0.properties` and change the following values:
 - `auth0.connection`: The name of the database connection you created, for example `custom-login-DB`.
 - `auth0.customLogin`: Set to `true` to enable custom login instead of Lock.
 
-If you download the seed from our [Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/02-custom-login) then the `domain`, `clientId` and `clientSecret` attributes will be populated for you, unless you are not logged in or you do not have at least one registered client. In any case you should verify that the values are correct if you have multiple clients in your account and you might want to use another than the one we set the information for.
+If you download the seed from our [Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/02-custom-login) then the `domain`, `issuer`, `clientId` and `clientSecret` attributes will be populated for you, unless you are not logged in or you do not have at least one registered client. In any case you should verify that the values are correct if you have multiple clients in your account and you might want to use another than the one we set the information for.
 
 ## Build and Run
 

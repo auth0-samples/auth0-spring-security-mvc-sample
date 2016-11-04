@@ -39,9 +39,6 @@ auth0.loginRedirectOnFail: /login
 auth0.base64EncodedSecret: true
 auth0.authorityStrategy: ROLES
 auth0.defaultAuth0WebSecurityEnabled: false
-auth0.connection: {CONNECTION}
-auth0.customLogin: false
-#auth0.customLogin: true
 auth0.signingAlgorithm: HS256
 #auth0.signingAlgorithm: RS256
 #auth0.publicKeyPath: /WEB-INF/certificate/cert.pem
@@ -53,7 +50,7 @@ Rename the file to `auth0.properties` and change the following values:
 - `auth0.clientId`:	The unique identifier for your client. You can find the correct value on the Settings tab of your client on the dashboard. 
 - `auth0.clientSecret`:	The secret used to sign and validate the tokens that will be used in the different authentication flows. You can find the correct value on the Settings tab of your client on the dashboard.
 
-If you download the seed from our [Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/01-login) then the `domain`, `clientId` and `clientSecret` attributes will be populated for you, unless you are not logged in or you do not have at least one registered client. In any case you should verify that the values are correct if you have multiple clients in your account and you might want to use another than the one we set the information for.
+If you download the seed from our [Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc/01-login) then the `domain`, `issuer`, `clientId` and `clientSecret` attributes will be populated for you, unless you are not logged in or you do not have at least one registered client. In any case you should verify that the values are correct if you have multiple clients in your account and you might want to use another than the one we set the information for.
 
 ## Build and Run
 

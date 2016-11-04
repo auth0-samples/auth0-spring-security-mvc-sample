@@ -34,9 +34,6 @@ public class LoginController {
         model.put("domain", appConfig.getDomain());
         model.put("loginCallback", appConfig.getLoginCallback());
         model.put("state", SessionUtils.getState(req));
-        // for this sample only, this just allows configuration to
-        // use Lock Widget or Auth0.js for login presentation
-        // should only enable loginCustom for DB connection
         return "login";
     }
 
