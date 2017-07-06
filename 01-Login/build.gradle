@@ -1,0 +1,36 @@
+group = 'com.auth0'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+compileJava {
+    sourceCompatibility '1.7'
+    targetCompatibility '1.7'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.auth0:mvc-auth-commons:1.0.0'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+
+    runtime 'org.springframework.boot:spring-boot-starter-tomcat'
+    runtime 'org.springframework.security:spring-security-taglibs'
+    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    runtime 'javax.servlet:jstl:1.2'
+
+    testCompile 'junit:junit:4.12'
+}

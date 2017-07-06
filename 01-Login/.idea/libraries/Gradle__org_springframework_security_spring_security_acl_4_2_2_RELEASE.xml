@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.security:spring-security-acl:4.2.2.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/4.2.2.RELEASE/d2f2c272d9295e80d12be9b26d8c7d1f1b4bc6e/spring-security-acl-4.2.2.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/4.2.2.RELEASE/cdff3d861ce78cee3a37ecff8a45b0a28e897127/spring-security-acl-4.2.2.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
