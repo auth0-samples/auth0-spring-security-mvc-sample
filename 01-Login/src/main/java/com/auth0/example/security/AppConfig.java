@@ -1,6 +1,8 @@
 package com.auth0.example.security;
 
 import com.auth0.AuthenticationController;
+import com.auth0.client.auth.AuthAPI;
+import com.auth0.client.mgmt.ManagementAPI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +39,9 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     @Value(value = "${com.auth0.clientSecret}")
     private String clientSecret;
 
+    @Value(value = "${com.auth0.apiToken}")
+    private String apiToken;
+
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver
@@ -52,6 +57,16 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         return AuthenticationController.newBuilder(domain, clientId, clientSecret)
                 .withResponseType("code")
                 .build();
+    }
+
+    @Bean
+    public ManagementAPI managementAPI() {
+        return new ManagementAPI(domain, apiToken);
+    }
+
+    @Bean
+    public AuthAPI authAPI() {
+        return new AuthAPI(domain, clientId, clientSecret);
     }
 
     @Override

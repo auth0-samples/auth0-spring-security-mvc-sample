@@ -5,8 +5,8 @@ apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
 
 compileJava {
-    sourceCompatibility '1.7'
-    targetCompatibility '1.7'
+    sourceCompatibility '1.8'
+    targetCompatibility '1.8'
 }
 
 buildscript {
@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.auth0:mvc-auth-commons:1.0.0'
+    compile 'com.auth0:mvc-auth-commons:1.+'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-security'
 

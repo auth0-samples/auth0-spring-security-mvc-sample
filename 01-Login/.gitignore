@@ -1,0 +1,6 @@
+.idea
+build
+classes
+
+build/resources/main/auth0.properties
+

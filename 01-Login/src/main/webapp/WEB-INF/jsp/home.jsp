@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.growl.css"/>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="/js/jquery.growl.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/monokai-sublime.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +30,9 @@
         <h3 class="text-muted">App.com</h3>
     </div>
     <div class="jumbotron">
-        <h3>Hello ${userId}!</h3>
+        <h3>Hello ${userId} <span class="text-muted">from ${provider}</span>!</h3>
+        <p>With State: <code>${state}</code></p>
+        <pre style="text-align: left"><code class="json">${userJson}</code></pre>
     </div>
     <div class="row marketing">
         <div class="col-lg-6">
@@ -53,10 +57,10 @@
     <footer class="footer">
         <p> &copy; 2016 Company Inc</p>
     </footer>
-
 </div>
 
 <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
     $(function () {
         $.growl({title: "Welcome ${userId}", message: "We hope you enjoy using this site!"});
     });
