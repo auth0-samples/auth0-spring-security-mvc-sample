@@ -50,7 +50,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationController authenticationController() throws UnsupportedEncodingException {
         return AuthenticationController.newBuilder(domain, clientId, clientSecret)
-                .withResponseType("code")
                 .build();
     }
 
