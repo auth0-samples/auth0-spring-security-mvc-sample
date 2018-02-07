@@ -41,15 +41,15 @@ Open a terminal, go to the project root directory and run the following command:
 ./gradlew clean bootRun
 ```
 
-The server will be accessible on https://localhost:8080/portal/home. After logging in you should see the `token` in the header.
+The server will be accessible on https://localhost:3000/portal/home. After logging in you should see the `token` in the header.
 
 ### Running the sample with docker
 
-In order to run the example with docker you need to have `docker` installed.
+In order to run the example with [docker](https://docs.docker.com/install/) you need to have `docker` installed.
 
 You also need to set the client values as explained [previously](#java-application).
 
-Execute in command line `sh exec.sh` to run the Docker in Linux, or `.\exec.ps1` to run the Docker in Windows.
+Execute in command line `sh exec.sh` to run the Docker in Linux or MacOS, or `.\exec.ps1` to run the Docker in Windows.
 
 ## Issue Reporting
 
