@@ -1,6 +1,7 @@
 package com.auth0.example.security;
 
 import com.auth0.AuthenticationController;
+import com.auth0.example.mvc.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,6 +54,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .build();
     }
 
+    @Bean
+    public CustomLogoutSuccessHandler customLogoutSuccessHandler() {
+        return new CustomLogoutSuccessHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -62,7 +68,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/callback", "/login").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
-                .logout().permitAll();
+                .logout().logoutSuccessHandler(customLogoutSuccessHandler());
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
 
