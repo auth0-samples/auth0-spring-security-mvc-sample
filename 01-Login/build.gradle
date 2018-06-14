@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.auth0:mvc-auth-commons:1.0.0'
+    compile 'com.auth0:mvc-auth-commons:1.+'
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.6.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-security:1.5.6.RELEASE'
 
