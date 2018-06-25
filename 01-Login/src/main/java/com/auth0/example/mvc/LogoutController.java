@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
+public class LogoutController implements LogoutSuccessHandler {
 
     @Autowired
     private AppConfig appConfig;
