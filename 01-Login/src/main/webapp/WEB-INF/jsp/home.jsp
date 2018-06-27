@@ -22,7 +22,7 @@
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li class="active" id="home"><a href="#">Home</a></li>
-                <li id="logout"><a href="#">Logout</a></li>
+                <li id="qsLogoutBtn"><a href="#">Logout</a></li>
             </ul>
         </nav>
         <h3 class="text-muted">App.com</h3>
@@ -60,9 +60,9 @@
     $(function () {
         $.growl({title: "Welcome ${userId}", message: "We hope you enjoy using this site!"});
     });
-    $("#logout").click(function(e) {
+    $("#qsLogoutBtn").click(function(e) {
         e.preventDefault();
-        $("#home").removeClass("active");
+        $("#qsLogoutBtn").removeClass("active");
         $("#password-login").removeClass("active");
         $("#logout").addClass("active");
         // assumes we are not part of SSO so just logout of local session
