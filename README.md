@@ -1,5 +1,7 @@
 # Auth0 Spring Security MVC Samples
 
+[![CircleCI](https://circleci.com/gh/auth0-samples/auth0-spring-security-mvc-sample.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-spring-security-mvc-sample)
+
 This sample demonstrates how to add authentication to a Spring Security MVC web app using Auth0.
 
 Check the [Spring Security MVC Quickstart](https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc) to better understand of this sample.
