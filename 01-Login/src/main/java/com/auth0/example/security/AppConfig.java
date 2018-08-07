@@ -59,10 +59,10 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/callback", "/login").permitAll()
+                .antMatchers("/", "/css/**", "/fonts/**", "/js/**", "/callback", "/login").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
-                .logout().permitAll();
+                .logout().logoutSuccessUrl("/").permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
 
