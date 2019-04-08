@@ -1,6 +1,7 @@
 package com.auth0.example.security;
 
 import com.auth0.AuthenticationController;
+import com.auth0.example.mvc.LogoutController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -48,6 +50,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new LogoutController();
+    }
+
+    @Bean
     public AuthenticationController authenticationController() throws UnsupportedEncodingException {
         return AuthenticationController.newBuilder(domain, clientId, clientSecret)
                 .build();
@@ -62,7 +69,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/callback", "/login").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
-                .logout().permitAll();
+                .logout().logoutSuccessHandler(logoutSuccessHandler()).permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
 
