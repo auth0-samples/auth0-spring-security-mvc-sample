@@ -111,3 +111,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/osx,gradle,intellij,java-web
+
+# Don't version Auth0 properties file
+auth0.properties
