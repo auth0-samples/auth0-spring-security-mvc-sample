@@ -6,9 +6,11 @@ defaults: &defaults
       - run:
           name: Replace Auth0 test credentials
           command: |
-            sed -i 's/{CLIENT_ID}/'$AUTH0_TEST_CLIENT_ID'/g' $AUTH0_CFG
-            sed -i 's/{DOMAIN}/'$AUTH0_TEST_DOMAIN'/g' $AUTH0_CFG
-            sed -i 's/{CLIENT_SECRET}/'$AUTH0_TEST_CLIENT_SECRET'/g' $AUTH0_CFG
+            cd $AUTH0_CFG/src/main/resources
+            mv auth0.properties.example auth0.properties
+            sed -i 's|{CLIENT_ID}|'$AUTH0_TEST_CLIENT_ID'|g' auth0.properties
+            sed -i 's|{DOMAIN}|'$AUTH0_TEST_DOMAIN'|g' auth0.properties
+            sed -i 's|{CLIENT_SECRET}|'$AUTH0_TEST_CLIENT_SECRET'|g' auth0.properties
       - run:
           name: Build pull request
           command: |
@@ -54,7 +56,7 @@ jobs:
   01-login:
     machine: true
     environment:
-      - AUTH0_CFG: 01-Login/src/main/resources/auth0.properties
+      - AUTH0_CFG: 01-Login
       - SAMPLE_PATH: 01-Login
     <<: *defaults
 
