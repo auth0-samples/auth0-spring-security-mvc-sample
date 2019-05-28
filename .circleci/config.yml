@@ -6,6 +6,7 @@ defaults: &defaults
       - run:
           name: Replace Auth0 test credentials
           command: |
+            mv $AUTH0_CFG.example $AUTH0_CFG
             sed -i 's/{CLIENT_ID}/'$AUTH0_TEST_CLIENT_ID'/g' $AUTH0_CFG
             sed -i 's/{DOMAIN}/'$AUTH0_TEST_DOMAIN'/g' $AUTH0_CFG
             sed -i 's/{CLIENT_SECRET}/'$AUTH0_TEST_CLIENT_SECRET'/g' $AUTH0_CFG
