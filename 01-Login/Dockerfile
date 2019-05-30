@@ -1,4 +1,4 @@
-FROM gradle:4.2-jdk7
+FROM gradle:5.4.1-jdk8
 
 WORKDIR /tmp
 ADD . /tmp

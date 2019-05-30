@@ -1,22 +1,21 @@
-group = 'com.auth0'
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.21.RELEASE'
+	}
+}
 
-apply plugin: 'java'
-apply plugin: 'war'
+plugins {
+	id 'java'
+}
+
 apply plugin: 'org.springframework.boot'
 
-compileJava {
-    sourceCompatibility '1.7'
-    targetCompatibility '1.7'
-}
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
-    }
-}
+group = 'com.auth0'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -24,13 +23,10 @@ repositories {
 
 dependencies {
     compile 'com.auth0:mvc-auth-commons:1.+'
-    compile 'org.springframework.boot:spring-boot-starter-web:1.5.6.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-security:1.5.6.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.21.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-security:1.5.21.RELEASE'
 
-    runtime 'org.springframework.boot:spring-boot-starter-tomcat:1.5.6.RELEASE'
-    runtime 'org.springframework.security:spring-security-taglibs:4.2.3.RELEASE'
-    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.20'
+    runtime 'org.springframework.security:spring-security-taglibs:4.2.6.RELEASE'
+    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.21'
     runtime 'javax.servlet:jstl:1.2'
-
-    testCompile 'junit:junit:4.12'
 }
