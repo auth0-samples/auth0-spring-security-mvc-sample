@@ -9,10 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import java.io.UnsupportedEncodingException;
 
@@ -40,16 +37,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     private String clientSecret;
 
     @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver
-                = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/jsp/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
-
-    @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
         return new LogoutController();
     }
@@ -65,12 +52,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http
-                .authorizeRequests()
-                .antMatchers("/callback", "/login").permitAll()
-                .antMatchers("/**").authenticated()
-                .and()
-                .logout().logoutSuccessHandler(logoutSuccessHandler()).permitAll();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
+            .authorizeRequests()
+            .antMatchers("/callback", "/login", "/", "/*.png", "/css/**", "/js/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .logout().logoutSuccessHandler(logoutSuccessHandler()).permitAll();
     }
 
     public String getDomain() {

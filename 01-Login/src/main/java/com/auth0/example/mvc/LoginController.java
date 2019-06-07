@@ -17,8 +17,10 @@ public class LoginController {
 
     @Autowired
     private AuthenticationController controller;
+
     @Autowired
     private AppConfig appConfig;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -31,6 +33,7 @@ public class LoginController {
         redirectUri += "/callback";
         String authorizeUrl = controller.buildAuthorizeUrl(req, redirectUri)
                 .withAudience(String.format("https://%s/userinfo", appConfig.getDomain()))
+                .withScope("openid profile email")
                 .build();
         return "redirect:" + authorizeUrl;
     }

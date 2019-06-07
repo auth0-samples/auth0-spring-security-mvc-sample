@@ -8,14 +8,18 @@ buildscript {
 }
 
 plugins {
-    id 'java'
+    id 'org.springframework.boot' version '1.5.21.RELEASE'
 }
-
-apply plugin: 'org.springframework.boot'
 
 group = 'com.auth0'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+// override some Spring Boot dependency versions
+ext['jackson.version'] = '2.9.9'
+ext['logback.version'] = '1.2.3'
+ext['thymeleaf.version'] = '3.0.11.RELEASE'
+ext['thymeleaf-extras-springsecurity4.version'] = '3.0.4.RELEASE'
 
 repositories {
     mavenCentral()
@@ -23,10 +27,14 @@ repositories {
 
 dependencies {
     compile 'com.auth0:mvc-auth-commons:1.+'
-    compile 'org.springframework.boot:spring-boot-starter-web:1.5.21.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-security:1.5.21.RELEASE'
 
-    runtime 'org.springframework.security:spring-security-taglibs:4.2.6.RELEASE'
-    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.21'
-    runtime 'javax.servlet:jstl:1.2'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.thymeleaf:thymeleaf-spring4'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4'
+    compile 'com.github.zhanhb:thymeleaf-layout-dialect:2.4.1'
+
+    testImplementation ('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 }
