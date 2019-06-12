@@ -7,13 +7,12 @@
 This sample demonstrates how to use Auth0 to perform authentication using the `mvc-auth-commons` library. Download or clone this repository and follow the instructions below to setup the sample.
 
 ### Auth0 Dashboard
-1. On the [Auth0 Dashboard](https://manage.auth0.com/#/clients) create a new Application of type `Regular Web Application`.
-1. Add the URL that will be called on an OAuth successful login to the Allowed Callback URLs. i.e.: `http://localhost:3000/callback`.
-1. Add the URL that will be called on logout to the Allowed Logout URLs. i.e.: `http://localhost:3000/login`.
+1. On the [Auth0 Dashboard](https://manage.auth0.com/#/clients) create a new Application of type **Regular Web Application**.
+1. On the **Settings** tab of your application, add the URL `http://localhost:3000/callback` to the **Allowed Callback URLs** field.
+1. On the **Settings** tab of your application, add the URL `http://localhost:3000/` to the **Allowed Logout URLs** field.
 1. Copy the `Domain`, `Client ID` and `Client Secret` values at the top of the page and use them to configure the Java Application.
 
-
-### Java Application
+### Application configuration
 
 Copy `src/main/resources/auth0.properties.example` to `src/main/resources/auth0.properties`:
 
@@ -21,24 +20,13 @@ Copy `src/main/resources/auth0.properties.example` to `src/main/resources/auth0.
 cp src/main/resources/auth0.properties.example src/main/resources/auth0.properties
 ```
 
-Set the client values in the `src/main/resources/auth0.properties` file. They are read by the `AppConfig` class.
+Set the application values in the `src/main/resources/auth0.properties` file to the values of your Auth0 application. They are read by the `AppConfig` class.
 
 ```xml
 com.auth0.domain: {YOUR_AUTH0_DOMAIN}
 com.auth0.clientId: {YOUR_AUTH0_CLIENT_ID}
 com.auth0.clientSecret: {YOUR_AUTH0_CLIENT_SECRET}
 ```
-
-It will request by default a `code` Response Type and later execute a Code Exchange. You can modify this behavior by changing the Response Type in the `AuthController` class to `token` or `id_token` to use Implicit Grant. i.e.:
-
-```java
-AuthenticationController.newBuilder(domain, clientId, clientSecret)
-    .withResponseType("token")
-    .build();
-```
-
-Keep in mind that the server uses `POST` to return an Implicit Grant result, you should handle that on your controller too.
-
 
 ### Running the sample
 
@@ -48,15 +36,28 @@ Open a terminal, go to the project root directory and run the following command:
 ./gradlew clean bootRun
 ```
 
-The server will be accessible on https://localhost:3000/portal/home. After logging in you should see the `token` in the header.
+The server will be accessible on https://localhost:3000.
 
 ### Running the sample with docker
 
-In order to run the example with [docker](https://docs.docker.com/install/) you need to have `docker` installed.
+In order to run the example with [Docker](https://docs.docker.com/install/) you need to have `docker` installed.
 
-You also need to set the client values as explained [previously](#java-application).
+You also need to set the client values as explained [previously](#application-configuration).
 
-Execute in command line `sh exec.sh` to run the Docker in Linux or MacOS, or `.\exec.ps1` to run the Docker in Windows.
+Execute the command to run Docker for your environment:
+
+Linux or MacOS:
+
+```bash
+sh exec.sh
+```
+
+Windows:
+
+```bash
+.\exec.ps1
+```
+
 
 ## Issue Reporting
 
