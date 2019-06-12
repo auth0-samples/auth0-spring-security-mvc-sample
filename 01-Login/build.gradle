@@ -2,13 +2,22 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.21.RELEASE'
-    }
 }
 
 plugins {
     id 'org.springframework.boot' version '1.5.21.RELEASE'
+}
+
+// allow bootRepackage to work with implementation
+// https://github.com/spring-projects/spring-boot/issues/9143
+configurations {
+    custom {
+        it.extendsFrom implementation
+    }
+}
+
+bootRepackage {
+    customConfiguration = 'custom'
 }
 
 group = 'com.auth0'
@@ -26,15 +35,15 @@ repositories {
 }
 
 dependencies {
-    compile 'com.auth0:mvc-auth-commons:1.+'
+    implementation 'com.auth0:mvc-auth-commons:1.+'
 
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.thymeleaf:thymeleaf-spring4'
-    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4'
-    compile 'com.github.zhanhb:thymeleaf-layout-dialect:2.4.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf:thymeleaf-spring4'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4'
+    implementation 'com.github.zhanhb:thymeleaf-layout-dialect:2.4.1'
 
-    testImplementation ('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 }
