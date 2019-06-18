@@ -25,7 +25,7 @@ defaults: &defaults
           name: Run tests
           command: |
             docker create --network host --name tester codeception/codeceptjs codeceptjs run-multiple --all --steps --verbose
-            docker cp $(pwd)/lock_login_test.js tester:/tests/lock_login_test.js
+            docker cp $(pwd)/lock_login_spa_test.js tester:/tests/lock_login_test.js
             docker cp $(pwd)/codecept.conf.js tester:/tests/codecept.conf.js
             docker start -i tester
           working_directory: scripts
