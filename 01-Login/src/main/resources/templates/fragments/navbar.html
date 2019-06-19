@@ -38,7 +38,7 @@
                     <!-- Login button: show if NOT authenticated -->
                     <li sec:authorize="!isAuthenticated()" class="nav-item">
                         <form th:action="@{/login}" method="GET">
-                            <input type="submit" class="btn btn-primary btn-margin" value="Login"/>
+                            <input type="submit" id="qsLoginBtn" class="btn btn-primary btn-margin" value="Login"/>
                         </form>
                     </li>
                     <!-- / Login button -->
@@ -60,7 +60,7 @@
                             <a href="/profile" class="dropdown-item dropdown-profile">
                                 <span class="icon icon-profile"></span> Profile
                             </a>
-                            <a th:href="@{/logout}" class="dropdown-item">
+                            <a id="qsLogoutBtn" th:href="@{/logout}" class="dropdown-item">
                                 <span class="icon icon-power"></span> Log out
                             </a>
                         </div>
