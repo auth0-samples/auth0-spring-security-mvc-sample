@@ -2,6 +2,8 @@ package com.auth0.example.security;
 
 import com.auth0.AuthenticationController;
 import com.auth0.example.mvc.LogoutController;
+import com.auth0.jwk.JwkProvider;
+import com.auth0.jwk.JwkProviderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +45,9 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationController authenticationController() throws UnsupportedEncodingException {
+        JwkProvider jwkProvider = new JwkProviderBuilder(domain).build();
         return AuthenticationController.newBuilder(domain, clientId, clientSecret)
+                .withJwkProvider(jwkProvider)
                 .build();
     }
 
