@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("unused")
 @Controller
@@ -24,14 +25,15 @@ public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    protected String login(final HttpServletRequest req) {
+    protected String login(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("Performing login");
-        String redirectUri = req.getScheme() + "://" + req.getServerName();
-        if ((req.getScheme().equals("http") && req.getServerPort() != 80) || (req.getScheme().equals("https") && req.getServerPort() != 443)) {
-            redirectUri += ":" + req.getServerPort();
+        String redirectUri = request.getScheme() + "://" + request.getServerName();
+        if ((request.getScheme().equals("http") && request.getServerPort() != 80) ||
+                (request.getScheme().equals("https") && request.getServerPort() != 443)) {
+            redirectUri += ":" + request.getServerPort();
         }
         redirectUri += "/callback";
-        String authorizeUrl = controller.buildAuthorizeUrl(req, redirectUri)
+        String authorizeUrl = controller.buildAuthorizeUrl(request, response, redirectUri)
                 .withScope("openid profile email")
                 .build();
         return "redirect:" + authorizeUrl;

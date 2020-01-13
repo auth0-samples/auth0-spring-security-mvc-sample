@@ -42,16 +42,16 @@ public class CallbackController {
         handle(req, res);
     }
 
-    private void handle(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    private void handle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            Tokens tokens = controller.handle(req);
+            Tokens tokens = controller.handle(request, response);
             TokenAuthentication tokenAuth = new TokenAuthentication(JWT.decode(tokens.getIdToken()));
             SecurityContextHolder.getContext().setAuthentication(tokenAuth);
-            res.sendRedirect(redirectOnSuccess);
+            response.sendRedirect(redirectOnSuccess);
         } catch (AuthenticationException | IdentityVerificationException e) {
             e.printStackTrace();
             SecurityContextHolder.clearContext();
-            res.sendRedirect(redirectOnFail);
+            response.sendRedirect(redirectOnFail);
         }
     }
 
