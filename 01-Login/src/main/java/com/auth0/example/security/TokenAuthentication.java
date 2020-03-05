@@ -14,30 +14,15 @@ public class TokenAuthentication extends AbstractAuthenticationToken {
     private boolean invalidated;
 
     public TokenAuthentication(DecodedJWT jwt) {
-        super(readAuthorities(jwt));
+        // No authorities by default for this login example. You can use the DecodedJWT to create authorities from
+        // claims as needed for your particular use case.
+        super(null);
         this.jwt = jwt;
     }
 
     private boolean hasExpired() {
         return jwt.getExpiresAt().before(new Date());
     }
-
-    private static Collection<? extends GrantedAuthority> readAuthorities(DecodedJWT jwt) {
-        Claim rolesClaim = jwt.getClaim("https://access.control/roles");
-        if (rolesClaim.isNull()) {
-            return Collections.emptyList();
-        }
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        String[] scopes = rolesClaim.asArray(String.class);
-        for (String s : scopes) {
-            SimpleGrantedAuthority a = new SimpleGrantedAuthority(s);
-            if (!authorities.contains(a)) {
-                authorities.add(a);
-            }
-        }
-        return authorities;
-    }
-
 
     @Override
     public String getCredentials() {
